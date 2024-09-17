@@ -136,3 +136,21 @@ test_strings = ["racecar", "hello", "level", "world", "madam"]
 for s in test_strings:
     print(f"'{s}' is a palindrome: {is_palindrome(s)}")
 
+
+# functools.reduce function 
+# more flexible and can handle more complex accumulations. It applies a binary function cumulatively to the items of an iterable, from left to right, so as to reduce the iterable to a single value
+from functools import reduce
+
+data = [1, 2, 3, 4, 5]
+
+# Function to find the maximum product of two consecutive elements
+def max_product(acc, x):
+    return max(acc, x[0] * x[1])
+
+# Create pairs of consecutive elements
+pairs = zip(data, data[1:])
+
+# Use reduce to find the maximum product
+result = reduce(max_product, pairs, float('-inf'))
+print(result)  # Output: 20 (4 * 5)
+
