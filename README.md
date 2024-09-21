@@ -35,6 +35,7 @@
    - 295\. Find Median from Data Stream
 2) Top K Elements
    - 1086\. High Five
+   - 973\. K Closest Points to Origin
 3) K Way Merge
    - 88\. Merge Sorted Array
    - 23\. Merge k Sorted Lists
