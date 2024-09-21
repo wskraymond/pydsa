@@ -18,8 +18,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3"
     ],
     install_requires=[
-        "pytest",
-        "pytest-mock"
+        "unittest"
     ],
     # When your source code is in a subdirectory under the project root, e.g.
     # `src/`, it is necessary to specify the `package_dir` argument.

@@ -3,17 +3,17 @@
 - VSCode for python: https://code.visualstudio.com/docs/python/python-quick-start
 - Project structure: https://dagster.io/blog/python-project-best-practices#9-best-practices-for-structuring-python-projects
 - dependency management: https://dagster.io/blog/python-packages-primer-2#managing-dependencies-the-old-way-setuppy
-
+- Testing: https://code.visualstudio.com/docs/python/testing
 
 
 ## A Curated List of 80+ Questions
 
 >***Array/List***
 #### Circular Array
-- 189\. Rotate Array
+- 1752\. Check if Array Is Sorted and Rotated
 
 #### Cyclic Sort
-- 442\. Find All Duplicates in an Array
+- Cyclic Swap: 442\. Find All Duplicates in an Array
 
 #### Fast-slow Pointers
 - 142\. Linked List Cycle II
@@ -23,6 +23,8 @@
    - 26\. Remove Duplicates from Sorted Array
 2) Reverse Linked List
    - 234\. Palindrome Linked List
+3) Reverse Array
+   - 189\. Rotate Array
 
 >***Binary***
 #### Binary Search
@@ -184,6 +186,11 @@
 - Stone Game
 - Best Time to Buy and Sell Stock
 - Jump Game
+
+
+
+
+
 
 
 

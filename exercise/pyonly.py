@@ -29,6 +29,10 @@ while n < 5:
 for i in range(5):
     print(i)
 
+# Looping from i = 4 to i = 0
+for i in reversed(range(5)):
+    print (i)
+
 # Looping from i = 2 to i = 5
 for i in range(2, 6):
     print(i)

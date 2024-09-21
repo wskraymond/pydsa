@@ -1,3 +1,17 @@
+# 3 version of loops with same output of j
+N = 10
+for i in range(N-1,-1,-1):	#N-1……….0  => total loop N times
+    for j in range(0,i+1):    #0…N-1, 0…..N-2, 0…..N-3,....., 0
+        print(j)
+
+for i in range(N, 0, -1):     #N………1         => total loop N times
+    for j in range(0, i):       #0….N-1, 0…..N-2,0…...N-3,....., 0
+        print(j)
+
+for i in reversed(range(N)):    #range(N) -> 0…….N-1 ->reversed -> N-1……0 
+    for j in range(i + 1):       #0…N-1, 0…..N-2, 0…..N-3,....., 0
+        print(j)
+
 #for - else
 for num in range(5):
     if num == 3:
