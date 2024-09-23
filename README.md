@@ -25,6 +25,8 @@
    - 234\. Palindrome Linked List
 3) Reverse Array
    - 189\. Rotate Array
+4) Merge array
+   - 88\. Merge Sorted Array
 
 >***Binary***
 #### Binary Search
@@ -37,9 +39,7 @@
    - 1086\. High Five
    - 973\. K Closest Points to Origin
 3) K Way Merge
-   - 88\. Merge Sorted Array
    - 23\. Merge k Sorted Lists
-   - 
 
 >***Graph Search & Traversal Ordering***
 #### Trie(Prefix Tree)
