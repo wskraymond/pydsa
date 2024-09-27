@@ -25,9 +25,9 @@ class Solution:
         def dfs(node:Optional[TreeNode]) -> int:
             if not node:
                 return 0
-            val = node.val
             left = dfs(node.left)
             right = dfs(node.right)
+            val = node.val
             nonlocal result
             result = max([result, val, val+left, val+right, val+left+right])
             return max([val, val+left, val+right])

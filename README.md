@@ -47,9 +47,9 @@
 
 #### Binary Tree
 1) DFS
-   - Pe-order: 124\. Binary Tree Maximum Path Sum
+   - Pe-order
    - In-order
-   - Post-order
+   - Post-order: 124\. Binary Tree Maximum Path Sum
 2) Binary Search Tree
    - In-order: 230\. Kth Smallest Element in a BST
 3) BFS
