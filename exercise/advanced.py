@@ -1,3 +1,12 @@
+# Multiple for-loop in list comprehension
+for i in range(0, 10):
+  for j in range(0, 10):
+      print(i,j)
+
+# The order of the for loops is similar to a nested for loop that you use normally
+result = [[i,j] for i in range(0, 10) for j in range(0, 10)]
+print(result)
+
 # Nested List Comprehension
 matrix = [
         [1, 2, 3, 4],
