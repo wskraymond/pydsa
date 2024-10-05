@@ -68,3 +68,38 @@ class Solution_dfs_sort:
         
         dfs(0,[])
         return res
+
+class Solution_iterative_sort:
+    '''
+    Given an integer array nums that may contain duplicates, return all possible subsets
+    (the power set).
+
+    The solution set must not contain duplicate subsets. Return the solution in any order.
+    '''
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        if nums is None:
+            return []
+        
+        nums.sort()
+        res = []
+        n = len(nums)
+        def backtrack(start:int, subset:List[int]) -> None:
+            # Power Set: nCr for r = 0....n
+            # for every take, we do recursive call
+            # for every skip, we stay ..
+            res.append(subset[::]) # add every subset for any k
+
+            j=start
+            while j<n:
+                subset.append(nums[j])
+                backtrack(j+1, subset) # take
+                subset.pop()
+
+                #skip
+                while j+1<n and nums[j]==nums[j+1]:
+                    j+=1
+                j+=1
+            
+            return res
+        backtrack(0, [])
+        return res

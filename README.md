@@ -95,7 +95,8 @@
    - 79\. Word Search
 3) Permutation: 
    - 46\. Permutations
-4) Subsets: 
+4) Subsets:
+   - unique number: 78\. Subsets
    - duplicate number: 90\. Subsets II
 5) Matrix: 
    - 37\. Sudoku Solver
