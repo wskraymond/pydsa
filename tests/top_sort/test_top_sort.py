@@ -26,6 +26,18 @@ class TestTopSort(unittest.TestCase):
         self.assertEqual("", s.alienOrder(["apple", "app"]))
     
     def test3(self):
+        s = alien_dictionary.Solution_bfs_defaultdict()
+        self.assertEqual("wertf", s.alienOrder(["wrt",
+                "wrf",
+                "er",
+                "ett",
+                "rftt"]))
+        self.assertEqual("hernf", s.alienOrder(["hrn","hrf","er","enn","rfnn"]))
+        self.assertEqual("zx", s.alienOrder(["z","x"]))
+        self.assertEqual("", s.alienOrder(["z","x", "z"]))
+        self.assertEqual("", s.alienOrder(["apple", "app"]))
+    
+    def test4(self):
         s = alien_dictionary.Solution_bfs()
         self.assertEqual("wertf", s.alienOrder(["wrt",
                 "wrf",
