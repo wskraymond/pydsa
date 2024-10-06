@@ -47,7 +47,7 @@ class Solution_exact_graph_by_iterating_26:
         res = 0
         while q:
             res +=1
-            for i in range(len(q)):
+            for _ in range(len(q)):
                 w = q.popleft()
                 if w==endWord:
                     return res
@@ -77,7 +77,7 @@ class Solution_wildcard_mapping:
         res = 0
         while q:    #O(V)
             res+=1
-            for i in range(len(q)):
+            for _ in range(len(q)):
                 w = q.popleft()
                 if w == endWord:    #O(m)
                     return res

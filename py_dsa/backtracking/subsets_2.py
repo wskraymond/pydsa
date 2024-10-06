@@ -84,13 +84,13 @@ class Solution_iterative_sort:
         res = []
         n = len(nums)
         def backtrack(start:int, subset:List[int]) -> None:
-            # Power Set: nCr for r = 0....n
+            # Power Set: nCr for r = 0....n  (there are n + 1 nCr )
             # for every take, we do recursive call
             # for every skip, we stay ..
             res.append(subset[::]) # add every subset for any k
-
-            j=start
-            while j<n:
+            
+            # when start = n, no more elements left to be added
+            for j in range(start, n): 
                 subset.append(nums[j])
                 backtrack(j+1, subset) # take
                 subset.pop()
@@ -98,8 +98,5 @@ class Solution_iterative_sort:
                 #skip
                 while j+1<n and nums[j]==nums[j+1]:
                     j+=1
-                j+=1
-            
-            return res
         backtrack(0, [])
         return res
