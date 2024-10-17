@@ -19,6 +19,30 @@ class Solution_iterative:
         backtrack(0,[])
         return res
 
+class Solution_dfs:
+    '''
+        Given an integer array nums of unique elements, return all possible 
+        subsets (the power set).
+    '''
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        if nums is None:
+            return []
+        
+        res, n = [], len(nums)
+        def dfs(i:int, subset:List[int]) -> None:
+            if i==n:
+                res.append(subset[::])
+                return 
+            
+            subset.append(nums[i])
+            dfs(i+1, subset)
+            subset.pop()
+
+            dfs(i+1, subset)
+            return
+        dfs(0, [])
+        return res
+
 # https://leetcode.com/problems/subsets/solutions/5186398/faster-less-mem-3-methods-detailed-approach-recursion-bit-mani-iterative-python-java-c/
 class Solution_clone:
     '''

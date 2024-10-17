@@ -64,13 +64,14 @@
 1) Directed
    1) DAG
       1) DFS
-         - 797\. All Paths From Source to Target
+         - DAG version: 797\. All Paths From Source to Target
       2) BFS
    2) Non-DAG
       1) Bellman Ford(BF)
          - 787\. Cheapest Flights Within K Stops
       2) BFS
       3) DFS
+         - Non-DAG version: All Paths From Source to Target (https://www.geeksforgeeks.org/find-paths-given-source-destination/)
          - 1059\. All Paths from Source Lead to Destination
       4) Dijkstra
          - 743\. Network Delay Time
