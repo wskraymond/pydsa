@@ -12,7 +12,7 @@ class TestDirected(unittest.TestCase):
         self.assertEquals(True, s.leadsToDestination(n = 4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3))
         self.assertEquals(False, s.leadsToDestination(n = 4, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 3))
         
-    def test2(self):
+    def test2_1(self):
         s = all_paths_from_src_to_dst_non_dag.Solution()
         e = [[2, 1, 3], [2, 0, 1, 3], [2, 0, 3]]
         a = s.allPathsSourceTarget(2, 3, [ [1,2,3],[3],[0,1],[]])
@@ -39,6 +39,19 @@ class TestDirected(unittest.TestCase):
         '''
         print("a=", a, " e=", e)
         self.assertEquals(a, e)
+    
+    def test2_2(self):
+        s = all_paths_from_src_to_dst_non_dag.Solution()
+        e = [[2, 1, 3], [2, 0, 1, 3], [2, 0, 3]]
+        a = s.allPathsSourceTarget(2, 3, [ [1,2,3],[3],[0,1],[]])
+
+        '''
+            1. Python's == operator does check deep equality for nested lists
+            2. unittest's assertEqual method also checks for deep equality in nested lists
+            3. When sorted() is applied to a list of lists, it compares each sub-list element-wise in a lexicographical order (like in a dictionary)
+        '''
+        print("a=", sorted(a), " e=", sorted(e))
+        self.assertEquals(sorted(a), sorted(e))
 
 
 
