@@ -1,3 +1,4 @@
+from functools import cmp_to_key
 from typing import List, Optional
 import heapq
 # Definition for singly-linked list.
@@ -28,15 +29,45 @@ class Solution_setattr_lt:
         head, curr = None, None
         #wrap it with custom comparator
         '''
+        1. setattr
+        setattr(ListNode, "__lt__", lambda self, other: self.val < other.val)
+
         To have a custom less-than function using setattr. 
         Note that, simply using the tuple trick and pushing (node.val, node) to the priority queue will not work because the lists have values in common
+        
+        2. TypeError
         (duplicate values, then compare ListNode but not implemnt __lt__ func).
+        If __lt__ (less than) is not implemented in a class that you're trying to sort, 
+        Python won't know how to compare objects of that class, and you'll get a TypeError. sorted() 
+        relies on __lt__ for ordering, so it's essential for any class you want to sort.
+
+        3. Wrapper 
+        The cmp_to_key function in Python transforms an old-style comparison function (cmp) into a key function that can be used with sorting functions 
+        like sorted(), sort(), and heapq. It essentially creates a wrapper class with a custom __lt__ method based on the comparison function you provide
+
+        from functools import cmp_to_key
+        def comparator(x, y):
+            # Your custom comparison logic
+            return x - y
+
+        # Using cmp_to_key to convert comparator to a key function
+        key_func = cmp_to_key(comparator)
+
+        # The wrapper class created by cmp_to_key
+        class K:
+            def __init__(self, obj, *args):
+                self.obj = obj
+            def __lt__(self, other):
+                return comparator(self.obj, other.obj) < 0
         '''
-        setattr(ListNode, "__lt__", lambda self, other: self.val < other.val)
-        min_heap = list(filter(lambda node: node is not None, lists))
+        def comparator(node1:ListNode, node2:ListNode)->int:
+            return node1.val - node2.val
+        
+        key_func = cmp_to_key(comparator)
+        min_heap = [key_func(node) for node in lists if node is not None]
         heapq.heapify(min_heap)
         while min_heap:
-            node = heapq.heappop(min_heap)
+            node = heapq.heappop(min_heap).obj # as it is a wrapper , we have to reference obj for original object
 
             #add element to result
             if head is None:
@@ -48,7 +79,7 @@ class Solution_setattr_lt:
             # detach next element
             if node.next:
                 next = node.next
-                heapq.heappush(min_heap, next)
+                heapq.heappush(min_heap, key_func(next))
                 node.next = None
         return head
 
