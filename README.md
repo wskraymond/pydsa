@@ -6,6 +6,32 @@
 - Testing: https://code.visualstudio.com/docs/python/testing
 
 
+## Python’s standard library 
+It has a range of built-in exceptions, similar in spirit to Java's. Some common ones include:
+
+- AttributeError: When an attribute reference or assignment fails.
+
+- TypeError: When an operation or function is applied to an object of inappropriate type.
+
+- ValueError: When a function gets an argument of the right type but an inappropriate value.
+
+- KeyError: Raised when a dictionary key is not found.
+
+- IndexError: When a sequence subscript is out of range.
+
+- NameError: When a local or global name is not found.
+
+- ImportError: When an import statement fails.
+
+- IOError / OSError: Base classes for exceptions raised by I/O operations.
+
+- FileNotFoundError: When a file or directory is requested but doesn’t exist.
+
+- ZeroDivisionError: When division or modulo by zero takes place.
+
+- RuntimeError: When an error occurs that doesn’t fall under other categories
+
+
 ## A Curated List of 80+ Questions
 
 >***Array/List***

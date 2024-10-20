@@ -188,11 +188,15 @@ arr = [i for i in range(5)]
 print(arr)
 
 # 2-D lists
-arr = [[0] * 4 for i in range(4)]
+arr = [[0] * 4 for _ in range(4)]
 print(arr)
 print(arr[0][0], arr[3][3])
 
 # This won't work
+''' While this seems to create a 4 x 4 matrix, 
+it actually results in all rows referencing the same list. 
+Modifying one row affects all rows:
+'''
 # arr = [[0] * 4] * 4
 
 #---------------------------------------------------------------------------------------------------------------
