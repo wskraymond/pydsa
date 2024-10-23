@@ -49,7 +49,6 @@ class Solution:
         n = len(nums)
         odd, even = 0,0
         for i in range(n-1,-1,-1):
-            tmp = even
-            even = max(odd + nums[i], even)
-            odd = max(tmp - nums[i], odd)
+            #multiple assignment
+            even,odd = max(odd + nums[i], even), max(even - nums[i], odd)
         return even
