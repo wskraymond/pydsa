@@ -5,8 +5,13 @@
 - dependency management: https://dagster.io/blog/python-packages-primer-2#managing-dependencies-the-old-way-setuppy
 - Testing: https://code.visualstudio.com/docs/python/testing
 
+## Developing inside a Container
+- https://code.visualstudio.com/docs/devcontainers/containers
+- https://code.visualstudio.com/docs/containers/overview
 
+For those Java's developer who are gonna learn python
 ## Python’s standard library 
+### Built-in exceptions
 It has a range of built-in exceptions, similar in spirit to Java's. Some common ones include:
 
 - AttributeError: When an attribute reference or assignment fails.
@@ -30,6 +35,54 @@ It has a range of built-in exceptions, similar in spirit to Java's. Some common 
 - ZeroDivisionError: When division or modulo by zero takes place.
 
 - RuntimeError: When an error occurs that doesn’t fall under other categories
+
+### Dats structure
+several built-in data structures and related design patterns that parallel Java's interfaces and generics
+
+1. Comparable-like:
+   - __lt__, __le__, __eq__, __ne__, __gt__, __ge__: Special methods for comparison, similar to Java's Comparable.
+
+2. Iterable/Iterator:
+
+   - __iter__, __next__: Special methods that make objects iterable, similar to Java's Iterable and Iterator.
+
+3. Collections:
+
+   - List (list): Dynamic arrays.
+
+   - Tuple (tuple): Immutable sequences.
+
+   - Set (set, frozenset): Unordered collections of unique elements.
+
+   - Dictionary (dict): Key-value mappings.
+
+3. Generic-like with Type Hints:
+
+   - Type Hints (typing module): Provides generics-like behavior, e.g., List[int], Dict[str, int].
+
+4. Queue/Deque:
+
+   - collections.deque: Double-ended queue, supports adding and removing elements from either end efficiently.
+
+5. Heap:
+
+   - heapq: Implements a heap queue, useful for priority queues.
+
+6. DefaultDict:
+
+   - collections.defaultdict: Similar to Java's HashMap with a default value for missing keys.
+
+7. Counter:
+
+   - collections.Counter: For counting hashable objects.
+
+8. NamedTuple:
+
+   - collections.namedtuple: Lightweight object types with named fields.
+
+9. OrderedDict:
+
+   - collections.OrderedDict: Dictionary that maintains the order of items.
 
 
 ## A Curated List of 80+ Questions
