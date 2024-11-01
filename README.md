@@ -9,6 +9,9 @@
 - https://code.visualstudio.com/docs/devcontainers/containers
 - https://code.visualstudio.com/docs/containers/overview
 
+![alt text](doc/dev_container_chart.png?raw=true "Chart")
+![alt text](doc/dev_container_edit.png?raw=true "Edit")
+
 For those Java's developer who are gonna learn python
 ## Python’s standard library 
 ### Built-in exceptions
