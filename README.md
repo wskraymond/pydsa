@@ -39,7 +39,7 @@ It has a range of built-in exceptions, similar in spirit to Java's. Some common 
 
 - RuntimeError: When an error occurs that doesn’t fall under other categories
 
-### Dats structure
+### Dats structure aligned with Java's thing
 several built-in data structures and related design patterns that parallel Java's interfaces and generics
 
 1. Comparable-like:
@@ -57,6 +57,11 @@ several built-in data structures and related design patterns that parallel Java'
 
    - Set (set, frozenset): Unordered collections of unique elements.
 
+```python
+# An immutable set
+fs = frozenset([1, 2, 3, 2])
+```
+
    - Dictionary (dict): Key-value mappings.
 
 3. Generic-like with Type Hints:
@@ -71,22 +76,52 @@ several built-in data structures and related design patterns that parallel Java'
 
    - heapq: Implements a heap queue, useful for priority queues.
 
-6. DefaultDict:
-
-   - collections.defaultdict: Similar to Java's HashMap with a default value for missing keys.
-
-7. Counter:
-
-   - collections.Counter: For counting hashable objects.
-
-8. NamedTuple:
-
-   - collections.namedtuple: Lightweight object types with named fields.
-
-9. OrderedDict:
+6. OrderedDict:
 
    - collections.OrderedDict: Dictionary that maintains the order of items.
 
+7. enum
+   - A module for creating enumerations, a set of symbolic names bound to unique, constant values
+```python
+from enum import Enum
+class Color(Enum):
+    RED = 1
+    GREEN = 2
+    BLUE = 3
+```
+
+#Pythonic Stuff which doesn't exists in java
+
+1. DefaultDict:
+
+   - collections.defaultdict: Similar to Java's HashMap with a default value for missing keys.
+
+2. Counter:
+
+   - collections.Counter: For counting hashable objects.
+
+```python
+from collections import Counter
+cnt = Counter(['a', 'b', 'b', 'c', 'a', 'b'])
+```
+
+3. NamedTuple:
+
+   - collections.namedtuple: Lightweight object types with named fields.
+
+```python
+from collections import namedtuple
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+```
+
+4. itertool
+
+   - A module that provides a set of fast, memory-efficient tools for working with iterators.
+```python
+import itertools
+permutations = itertools.permutations([1, 2, 3])
+```
 
 ## A Curated List of 80+ Questions
 
