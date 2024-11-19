@@ -15,7 +15,7 @@ class Solution_bruteforce:
                         res+=1    
         return res
     
-class Solution_double_counting:
+class Solution_double_counting_failure:
     '''
         Given an array of n integers nums and an integer target, 
         find the number of index triplets i, j, k with 0 <= i < j < k < n 
