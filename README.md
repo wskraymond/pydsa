@@ -39,8 +39,9 @@ It has a range of built-in exceptions, similar in spirit to Java's. Some common 
 
 - RuntimeError: When an error occurs that doesn’t fall under other categories
 
-### Dats structure aligned with Java's thing
-several built-in data structures and related design patterns that parallel Java's interfaces and generics
+### Dats structure 
+#### Java's thing
+Several built-in data structures and related design patterns that parallel Java's interfaces and generics
 
 1. Comparable-like:
    - __lt__, __le__, __eq__, __ne__, __gt__, __ge__: Special methods for comparison, similar to Java's Comparable.
@@ -90,7 +91,8 @@ class Color(Enum):
     BLUE = 3
 ```
 
-#Pythonic Stuff which doesn't exists in java
+#### Pythonic Stuff
+a few of the unique Python data structures that do not have direct analogs in Java
 
 1. DefaultDict:
 
