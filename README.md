@@ -13,7 +13,7 @@
 ![alt text](doc/dev_container_edit.png?raw=true "Edit")
 
 
-***For those Java's developer who are gonna learn python***
+***For Java developers who're gonna learn python***
 
 ## Python’s standard library 
 ### Built-in exceptions
