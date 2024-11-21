@@ -106,7 +106,46 @@ a few of the unique Python data structures that do not have direct analogs in Ja
 
 ```python
 from collections import Counter
-cnt = Counter(['a', 'b', 'b', 'c', 'a', 'b'])
+c = Counter(['a', 'b', 'b', 'c', 'a', 'b'])
+sorted(c.elements()) # ['a', 'a', 'b', 'b', 'b', 'c']
+c.total() #6
+
+count1 = Counter({'apple': 3, 'banana': 2})
+count2 = Counter({'apple': 1, 'banana': 1, 'orange': 1})
+combined = count1 + count2
+print(combined)  # Output: Counter({'apple': 4, 'banana': 3, 'orange': 1})
+
+```
+
+   - Counters support rich comparison operators for equality, subset, and superset relationships: ==, !=, <, <=, >, >=. All of those tests treat missing elements as having zero counts so that Counter(a=1) == Counter(a=1, b=0) returns true.
+
+```python
+c = Counter(a=3, b=1)
+d = Counter(a=1, b=2)
+c + d                       # add two counters together:  c[x] + d[x]
+Counter({'a': 4, 'b': 3})
+c - d                       # subtract (keeping only positive counts)
+Counter({'a': 2})
+c & d                       # intersection:  min(c[x], d[x])
+Counter({'a': 1, 'b': 1})
+c | d                       # union:  max(c[x], d[x])
+Counter({'a': 3, 'b': 2})
+c == d                      # equality:  c[x] == d[x]
+False
+c <= d                      # inclusion:  c[x] <= d[x]
+False
+```
+
+```python
+from collections import Counter
+
+# Example Counters
+s = Counter({'a': 2, 'b': 1})
+p = Counter({'a': 3, 'b': 1, 'c': 2})
+
+# Use the comparison operator to check inclusion
+result = s <= p
+print(result)  # Output: True
 ```
 
 3. NamedTuple:
@@ -312,6 +351,26 @@ permutations = itertools.permutations([1, 2, 3])
 - Jump Game
 
 
+## Understanding Infinity Comparisons
+### Distinct Value:
+
+float('inf') represents a special value that is distinct from all finite numbers. In Python, this value is conceptually treated as an unbounded positive value. So, comparisons with float('inf') are straightforward and don't require tolerances because infinity is inherently larger than any finite number.
+
+### Type Coercion:
+
+When comparing an integer to float('inf'), Python automatically handles the type coercion seamlessly. Python's dynamic typing allows it to compare integers and floats directly without extra steps.
+
+```python 
+positive_infinity = float('inf')
+large_integer = 10**308
+
+print(positive_infinity > large_integer)  # Output: True
+```
+
+### No Rounding Errors
+- When you compare floating-point numbers like 1.0 / 3.0 and 0.3333333333333333, you deal with rounding errors and precision issues inherent to floating-point arithmetic. This is why tolerances are necessary for meaningful comparisons.
+
+- In contrast, comparing an integer to float('inf') does not involve rounding or precision errors. The nature of infinity ensures that it is always clearly greater than any finite value, eliminating the need for tolerance-based comparisons.
 
 
 
