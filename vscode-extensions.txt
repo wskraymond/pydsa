@@ -1,0 +1,13 @@
+Extensions installed on WSL: Ubuntu:
+charliermarsh.ruff
+donjayamanne.python-environment-manager
+ms-azuretools.vscode-docker
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
+ms-toolsai.jupyter
+ms-toolsai.jupyter-renderers
+ms-toolsai.vscode-jupyter-cell-tags
+ms-toolsai.vscode-jupyter-slideshow
+njpwerner.autodocstring
+tamasfe.even-better-toml
