@@ -19,6 +19,7 @@ One of the useful things about developing in a container is that you can use spe
 ![alt text](doc/dev_container_chart.png?raw=true "Chart")
 ![alt text](doc/dev_container_edit.png?raw=true "Edit")
 
+### 1. Working with Git
 #### Git Repo in an isolated container volume (improved disk performance!)
 https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume
 
@@ -26,12 +27,58 @@ https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-a-
 
 - Repository Containers use isolated, local Docker volumes instead of binding to the local filesystem. In addition to not polluting your file tree, local volumes have the added benefit of improved performance on Windows and macOS.
 
-#### Docker as dev container
-linux: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-
 #### Git inside a Container
 - https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials
 - between window and WSL: https://code.visualstudio.com/docs/remote/troubleshooting#_resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files
+
+### 2. Working with Docker 
+#### Docker outside of Docker
+https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
+Access your host's Docker install from inside a dev container. Installs Docker extension in the container along with needed CLIs.
+
+- While you can directly build and run the application inside the dev container you create, you may also want to test it by deploying a built container image into your local Docker Desktop instance without affecting your dev container
+
+- using the docker-outside-of-docker feature in your devcontainer.json can help resolve the issue with Docker socket permissions.
+  1. enableNonRootDocker: This setting allows Docker to be used without requiring root privileges inside the container.
+
+  2. moby: This specifies whether to use Moby, an open-source Docker project. When set to true, it ensures that the Moby project is used.
+
+```json
+{
+  "name": "Python Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "moby": "true"
+    }
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-azuretools.vscode-docker",
+    "charliermarsh.ruff",
+    "donjayamanne.python-environment-manager",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    "njpwerner.autodocstring",
+    "tamasfe.even-better-toml",
+    "alphabotsec.vscode-eclipse-keybindings"
+  ]
+}
+```
+
+#### Docker in Docker
+https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
+Creates pure "child" containers by hosting its own instance of the docker daemon inside this container. This is compared to the forementioned "docker-outside-of-docker" method that bind mounts the host's docker socket, creating "sibling" containers to the current container.
+
+- enableNonRootDocker	Enable non-root Docker access in container? True
 
 
 ***For Java developers who're gonna learn python***
