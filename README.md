@@ -20,6 +20,8 @@ One of the useful things about developing in a container is that you can use spe
 ![alt text](doc/dev_container_edit.png?raw=true "Edit")
 
 #### Git Repo in an isolated container volume (improved disk performance!)
+https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume
+
 - While you can open a locally cloned repository in a container, you may want to work with an isolated copy of a repository for a PR review or to investigate another branch without impacting your work.
 
 - Repository Containers use isolated, local Docker volumes instead of binding to the local filesystem. In addition to not polluting your file tree, local volumes have the added benefit of improved performance on Windows and macOS.
