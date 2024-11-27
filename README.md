@@ -6,11 +6,30 @@
 - Testing: https://code.visualstudio.com/docs/python/testing
 
 ## Developing inside a Container
+The Dev Containers extension supports two primary operating models:
+
+- You can use a container as your full-time development environment
+- You can attach to a running container to inspect it.
+
+One of the useful things about developing in a container is that you can use specific versions of dependencies that your application needs without impacting your local development environment.
+
 - https://code.visualstudio.com/docs/devcontainers/containers
 - https://code.visualstudio.com/docs/containers/overview
 
 ![alt text](doc/dev_container_chart.png?raw=true "Chart")
 ![alt text](doc/dev_container_edit.png?raw=true "Edit")
+
+#### Git Repo in an isolated container volume (improved disk performance!)
+- While you can open a locally cloned repository in a container, you may want to work with an isolated copy of a repository for a PR review or to investigate another branch without impacting your work.
+
+- Repository Containers use isolated, local Docker volumes instead of binding to the local filesystem. In addition to not polluting your file tree, local volumes have the added benefit of improved performance on Windows and macOS.
+
+#### Docker as dev container
+linux: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+
+#### Git inside a Container
+- https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials
+- between window and WSL: https://code.visualstudio.com/docs/remote/troubleshooting#_resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files
 
 
 ***For Java developers who're gonna learn python***
