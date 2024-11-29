@@ -78,8 +78,6 @@ Access your host's Docker install from inside a dev container. Installs Docker e
 https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
 Creates pure "child" containers by hosting its own instance of the docker daemon inside this container. This is compared to the forementioned "docker-outside-of-docker" method that bind mounts the host's docker socket, creating "sibling" containers to the current container.
 
-- enableNonRootDocker	Enable non-root Docker access in container? True
-
 
 ***For Java developers who're gonna learn python***
 
