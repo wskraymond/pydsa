@@ -78,6 +78,106 @@ Access your host's Docker install from inside a dev container. Installs Docker e
 https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
 Creates pure "child" containers by hosting its own instance of the docker daemon inside this container. This is compared to the forementioned "docker-outside-of-docker" method that bind mounts the host's docker socket, creating "sibling" containers to the current container.
 
+## Poetry
+1. Poetry vs Maven in Java
+
+| **Functionality**         | **Poetry Command**                         | **Maven Command**                       |
+|---------------------------|--------------------------------------------|-----------------------------------------|
+| **Initialize Project**    | `poetry init`                              | `mvn archetype:generate`                |
+| **Add Dependency**        | `poetry add <package>`                     | `mvn dependency:resolve -Dartifact=<dependency>` |
+| **Install Dependencies**  | `poetry install`                           | `mvn install`                           |
+| **Update Dependencies**   | `poetry update`                            | `mvn versions:use-latest-releases`      |
+| **Run Tests**             | `poetry run pytest` or `poetry run test` (`poetry run python -m unittest discover`)   | `mvn test`                              |
+| **Build Project**         | `poetry build`                             | `mvn package`                           |
+| **Publish Package**       | `poetry publish`                           | `mvn deploy`                            |
+| **Show Dependencies**     | `poetry show`                              | `mvn dependency:list`                   |
+| **Lock Dependencies**     | Automatically updates `poetry.lock` during `install` or `update` | Managed through the `pom.xml` and `versions-maven-plugin` |
+| **Run Scripts**           | `poetry run <command>`                     | `mvn exec:java -Dexec.mainClass=<mainClass>` |
+| **Configure Environment** | `poetry config <option> <value>`           | Managed via the `pom.xml` configuration  |
+
+```bash
+# Get virtual environment path
+poetry run which python
+
+# Run application
+poetry run python app.py
+
+# List configuration
+poetry config --list
+```
+
+2. Migrate from venv to Poetry's venv
+
+a) switch venv
+```bash
+# Navigate to your project directory
+cd /path/to/your/project
+
+# Initialize Poetry
+poetry init
+
+# Add existing dependencies from requirements.txt
+poetry add $(cat requirements.txt)
+
+# Install dependencies with Poetry
+poetry install
+
+# Activate Poetry environment
+poetry shell
+```
+
+b) setup script for test cmd
+
+- Edit pyproject.toml:
+```script
+[tool.poetry.scripts]
+test = 'scripts:test'
+```
+
+- Create a scripts.py file on the root directory
+```python
+import subprocess
+
+def test():
+    """
+    Run all unittests. Equivalent to:
+    `poetry run python -u -m unittest discover`
+    """
+    subprocess.run(
+        ['python', '-u', '-m', 'unittest', 'discover']
+    )
+```
+
+- Run script:
+
+`poetry run test`
+
+
+4. poetry.lock (Dependency Locking)
+
+The poetry.lock file locks the specific versions of dependencies and sub-dependencies that your project needs. This ensures that every time the project is installed, the exact same versions of all dependencies are used, providing consistency across different environments.
+
+- Reproducible Builds: By locking the dependencies, poetry.lock helps in achieving reproducible builds.
+
+- Security: It helps in preventing unintentional upgrades to newer versions of dependencies.
+
+How It Works
+
+a) Initial Creation or Update the current (`poetry install`)
+
+When you run poetry install after modifying pyproject.toml:
+
+- Check for Changes: Poetry will compare the pyproject.toml with the poetry.lock file.
+
+- Resolve New Dependencies
+
+- Update poetry.lock
+
+- Install Dependencies
+
+b) Updates (`poetry update`)
+
+Poetry will update the dependencies to their latest compatible versions according to the specifications in pyproject.toml and then update the poetry.lock file accordingly.
 
 ***For Java developers who're gonna learn python***
 
