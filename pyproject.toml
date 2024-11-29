@@ -8,13 +8,16 @@ packages = [
 ]
 readme = "README.md"
 classifiers = [
-    "Intended Audience :: Python Developer",
+    "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10, <3.13"
+python = ">=3.10, <=3.13"
 
+
+[tool.poetry.scripts]
+test = 'cmd_scripts:test'
 
 [build-system]
 requires = ["setuptools<65.5.0", "poetry-core>=1.0.0"]

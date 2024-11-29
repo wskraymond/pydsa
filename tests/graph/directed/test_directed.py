@@ -7,10 +7,10 @@ class TestDirected(unittest.TestCase):
     def test1(self):
         s = all_path_from_src_lead_to_dst.Solution()
         # n = 3, edges = [[0,1],[0,2]], source = 0, destination = 2
-        self.assertEquals(False, s.leadsToDestination(n = 3, edges = [[0,1],[0,2]], source = 0, destination = 2))
-        self.assertEquals(False, s.leadsToDestination(n = 4, edges = [[0,1],[0,3],[1,2],[2,1]], source = 0, destination = 3))
-        self.assertEquals(True, s.leadsToDestination(n = 4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3))
-        self.assertEquals(False, s.leadsToDestination(n = 4, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 3))
+        self.assertEqual(False, s.leadsToDestination(n = 3, edges = [[0,1],[0,2]], source = 0, destination = 2))
+        self.assertEqual(False, s.leadsToDestination(n = 4, edges = [[0,1],[0,3],[1,2],[2,1]], source = 0, destination = 3))
+        self.assertEqual(True, s.leadsToDestination(n = 4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3))
+        self.assertEqual(False, s.leadsToDestination(n = 4, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 3))
         
     def test2_1(self):
         s = all_paths_from_src_to_dst_non_dag.Solution()
@@ -38,7 +38,7 @@ class TestDirected(unittest.TestCase):
             2. unittest's assertEqual method also checks for deep equality in nested lists
         '''
         print("a=", a, " e=", e)
-        self.assertEquals(a, e)
+        self.assertEqual(a, e)
     
     def test2_2(self):
         s = all_paths_from_src_to_dst_non_dag.Solution()
@@ -51,7 +51,7 @@ class TestDirected(unittest.TestCase):
             3. When sorted() is applied to a list of lists, it compares each sub-list element-wise in a lexicographical order (like in a dictionary)
         '''
         print("a=", sorted(a), " e=", sorted(e))
-        self.assertEquals(sorted(a), sorted(e))
+        self.assertEqual(sorted(a), sorted(e))
 
 
 
