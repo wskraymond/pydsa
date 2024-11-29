@@ -6,12 +6,178 @@
 - Testing: https://code.visualstudio.com/docs/python/testing
 
 ## Developing inside a Container
+The Dev Containers extension supports two primary operating models:
+
+- You can use a container as your full-time development environment
+- You can attach to a running container to inspect it.
+
+One of the useful things about developing in a container is that you can use specific versions of dependencies that your application needs without impacting your local development environment.
+
 - https://code.visualstudio.com/docs/devcontainers/containers
 - https://code.visualstudio.com/docs/containers/overview
 
 ![alt text](doc/dev_container_chart.png?raw=true "Chart")
 ![alt text](doc/dev_container_edit.png?raw=true "Edit")
 
+### 1. Working with Git
+#### Git Repo in an isolated container volume (improved disk performance!)
+https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume
+
+- While you can open a locally cloned repository in a container, you may want to work with an isolated copy of a repository for a PR review or to investigate another branch without impacting your work.
+
+- Repository Containers use isolated, local Docker volumes instead of binding to the local filesystem. In addition to not polluting your file tree, local volumes have the added benefit of improved performance on Windows and macOS.
+
+#### Git inside a Container
+- https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials
+- between window and WSL: https://code.visualstudio.com/docs/remote/troubleshooting#_resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files
+
+### 2. Working with Docker 
+#### Docker outside of Docker
+https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
+Access your host's Docker install from inside a dev container. Installs Docker extension in the container along with needed CLIs.
+
+- While you can directly build and run the application inside the dev container you create, you may also want to test it by deploying a built container image into your local Docker Desktop instance without affecting your dev container
+
+- using the docker-outside-of-docker feature in your devcontainer.json can help resolve the issue with Docker socket permissions.
+  1. enableNonRootDocker: This setting allows Docker to be used without requiring root privileges inside the container.
+
+  2. moby: This specifies whether to use Moby, an open-source Docker project. When set to true, it ensures that the Moby project is used.
+
+```json
+{
+  "name": "Python Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "moby": "true"
+    }
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-azuretools.vscode-docker",
+    "charliermarsh.ruff",
+    "donjayamanne.python-environment-manager",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    "njpwerner.autodocstring",
+    "tamasfe.even-better-toml",
+    "alphabotsec.vscode-eclipse-keybindings"
+  ]
+}
+```
+
+#### Docker in Docker
+https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
+Creates pure "child" containers by hosting its own instance of the docker daemon inside this container. This is compared to the forementioned "docker-outside-of-docker" method that bind mounts the host's docker socket, creating "sibling" containers to the current container.
+
+## Poetry
+1. Poetry vs Maven in Java
+
+| **Functionality**         | **Poetry Command**                         | **Maven Command**                       |
+|---------------------------|--------------------------------------------|-----------------------------------------|
+| **Initialize Project**    | `poetry init`                              | `mvn archetype:generate`                |
+| **Add Dependency**        | `poetry add <package>`                     | `mvn dependency:resolve -Dartifact=<dependency>` |
+| **Install Dependencies**  | `poetry install`                           | `mvn install`                           |
+| **Update Dependencies**   | `poetry update`                            | `mvn versions:use-latest-releases`      |
+| **Run Tests**             | `poetry run pytest` or `poetry run test` (`poetry run python -m unittest discover`)   | `mvn test`                              |
+| **Build Project**         | `poetry build`                             | `mvn package`                           |
+| **Publish Package**       | `poetry publish`                           | `mvn deploy`                            |
+| **Show Dependencies**     | `poetry show`                              | `mvn dependency:list`                   |
+| **Lock Dependencies**     | Automatically updates `poetry.lock` during `install` or `update` | Managed through the `pom.xml` and `versions-maven-plugin` |
+| **Run Scripts**           | `poetry run <command>`                     | `mvn exec:java -Dexec.mainClass=<mainClass>` |
+| **Configure Environment** | `poetry config <option> <value>`           | Managed via the `pom.xml` configuration  |
+
+```bash
+# Get virtual environment path
+poetry run which python
+
+# Run application
+poetry run python app.py
+
+# List configuration
+poetry config --list
+```
+
+2. Migrate from venv to Poetry's venv
+
+a) switch venv
+```bash
+# Navigate to your project directory
+cd /path/to/your/project
+
+# Initialize Poetry
+poetry init
+
+# Add existing dependencies from requirements.txt
+poetry add $(cat requirements.txt)
+
+# Install dependencies with Poetry
+poetry install
+
+# Activate Poetry environment
+poetry shell
+```
+
+b) setup script for test cmd
+
+- Edit pyproject.toml:
+```script
+[tool.poetry.scripts]
+test = 'scripts:test'
+```
+
+- Create a scripts.py file on the root directory
+```python
+import subprocess
+
+def test():
+    """
+    Run all unittests. Equivalent to:
+    `poetry run python -u -m unittest discover`
+    """
+    subprocess.run(
+        ['python', '-u', '-m', 'unittest', 'discover']
+    )
+```
+
+- Run script:
+
+`poetry run test`
+
+
+4. poetry.lock (Dependency Locking)
+
+The poetry.lock file locks the specific versions of dependencies and sub-dependencies that your project needs. This ensures that every time the project is installed, the exact same versions of all dependencies are used, providing consistency across different environments.
+
+- Reproducible Builds: By locking the dependencies, poetry.lock helps in achieving reproducible builds.
+
+- Security: It helps in preventing unintentional upgrades to newer versions of dependencies.
+
+How It Works
+
+a) Initial Creation or Update the current (`poetry install`)
+
+When you run poetry install after modifying pyproject.toml:
+
+- Check for Changes: Poetry will compare the pyproject.toml with the poetry.lock file.
+
+- Resolve New Dependencies
+
+- Update poetry.lock
+
+- Install Dependencies
+
+b) Updates (`poetry update`)
+
+Poetry will update the dependencies to their latest compatible versions according to the specifications in pyproject.toml and then update the poetry.lock file accordingly.
 
 ***For Java developers who're gonna learn python***
 
