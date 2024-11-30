@@ -34,3 +34,15 @@ class Solution:
             else:
                 stack.append(i)
         return res            
+
+class solution_minus_1:
+    def longestValidParentheses(self, s: str) -> int:
+        res,stack = 0,[-1]
+        for i,c in enumerate(s):
+            top = stack[-1]
+            if top > -1 and c == ')' and s[top] == '(':
+                stack.pop() # pop matched one
+                res = max(res, i-stack[-1])
+            else:
+                stack.append(i)
+        return res
