@@ -1,5 +1,5 @@
 from typing import List
-class Solution:
+class Solution_insert_based:
     '''
         Given an array of integers temperatures represents the daily temperatures,
         
@@ -18,15 +18,32 @@ class Solution:
                 4. if stack is empty, answer[i] = 0
         '''
 
-        stack, n = [], len(temperatures)
+        dsc_stack, n = [], len(temperatures)
         ans = [0]*n
         #for i,x in enumerate(reversed(temperatures)): #reverse value but not index
         for i in reversed(range(n)):
             x = temperatures[i]
-            while stack and temperatures[stack[-1]] <= x:
-                stack.pop()
+            while dsc_stack and temperatures[dsc_stack[-1]] <= x:
+                dsc_stack.pop()
 
-            ans[i] = stack[-1] - i if stack else 0
-            stack.append(i)
+            ans[i] = dsc_stack[-1] - i if dsc_stack else 0
+            dsc_stack.append(i)
                 
+        return ans
+
+class Solution_pop_based:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        '''
+            a decreasing mono stack from left to right
+            popped index will be answer's index
+        '''
+        dsc_stack,n = [], len(temperatures)
+        ans = [0]*n
+        for i, t in enumerate(temperatures):
+            while dsc_stack and t > temperatures[dsc_stack[-1]]:
+                j = dsc_stack.pop()
+                ans[j] = i-j
+            dsc_stack.append(i)
+        
+        #elmenets remaining in stack have no next greater value
         return ans
