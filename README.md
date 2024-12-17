@@ -5,10 +5,12 @@
 - dependency management: https://dagster.io/blog/python-packages-primer-2#managing-dependencies-the-old-way-setuppy
 - Testing: https://code.visualstudio.com/docs/python/testing
 
-## Eclipse Keymap List for VSCode
+## Eclipse Keymap Extensions for VSCode
 - alphabotsec.vscode-eclipse-keybindings
 - fabioz.vscode-eclipse-pydev-windows-keymap
 - tzraeq.vscode-eclipse-win-keybindings (Ctrl + C/V for copy/paste)
+
+***For Mac Users, disable keyboard shortcut for mission control(ctrl + left/right/up/down)***
 
 ## Developing inside a Container
 The Dev Containers extension supports two primary operating models:
