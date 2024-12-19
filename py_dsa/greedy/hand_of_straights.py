@@ -56,6 +56,6 @@ class Solution:
                 if num_counter[i]==0:
                     if min_heap[0]!=i:
                         return False
-                    min_heap.pop()
+                    heapq.heappop(min_heap)
                 
         return True
