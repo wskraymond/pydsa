@@ -43,6 +43,7 @@ original_list = [1, 2, 3, 4, 5]
 copied_list = original_list[:]
 print(copied_list)  # Output: [1, 2, 3, 4, 5]
 print(copied_list is original_list)  # Output: False
+print(copied_list == original_list)  # Output: True
 
 '''
  while my_list[:] on the right side creates a shallow copy, 

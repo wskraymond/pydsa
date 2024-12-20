@@ -546,6 +546,17 @@ print(positive_infinity > large_integer)  # Output: True
 - In contrast, comparing an integer to float('inf') does not involve rounding or precision errors. The nature of infinity ensures that it is always clearly greater than any finite value, eliminating the need for tolerance-based comparisons.
 
 
+### Shallow copy
+
+Syntax: a[start:stop:step] with start, stop, and step all set to their default values.
+
+- Both a[:] and a[::] create a shallow copy of the list a.
+- a[:] is a more common and concise way to copy an entire list.
+- a[::] explicitly includes the step parameter, which defaults to 1, but is rarely necessary unless you want to be explicit about including all elements with a default step.
+
+**In summary, there's no functional difference between the two in the context of copying a list; it's mainly a matter of style and readability. If you want to be explicit about the step value, you can use a[::].**
+
+
 
 
 
