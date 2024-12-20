@@ -29,21 +29,20 @@ class Solution:
                 3. when we should stop (mismatched group exists) and how do we know we can continue .
 
             Solution:
-                0. n = input array size, n%s = 0
-                1. O(n + nlogn): use min heap to keep track of the smallest number on the top , and pop the number on the top , when its count reaches zero.
+                0. n = input array size, n%s = 0 And unique number = M
+                1. O(n + nlogn): use min heap to keep track of the smallest number (M unique number) on the top , and pop the number on the top , when its count reaches zero.
                 2. O(n): a {number -> count} map to keep track of the count for each unique number
                 3. a) when the count of a number(k) reaches zero , but the smallest number on the top != k. It implies that the number on the top still remains but there will be missing consecutive number for next group, 
                         then we don't need to continue, even the current group has S consecutive.
                    b) Or, when the map doesn't contain ki=kj+1 (count=0)
-                5. unique number = M
         '''
         n,s = len(hand), groupSize
         if n%s!=0:
             return False
 
-        min_heap = hand[::]     #O(n)
-        heapq.heapify(min_heap) #O(n)
         num_counter = Counter(hand) #O(n)
+        min_heap = list(num_counter.keys())     #O(n)
+        heapq.heapify(min_heap) #O(n)
 
         while min_heap: #(nlogn)
             x = min_heap[0]
@@ -57,5 +56,5 @@ class Solution:
                     if min_heap[0]!=i:
                         return False
                     heapq.heappop(min_heap)
-                
         return True
+                
