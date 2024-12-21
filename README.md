@@ -524,7 +524,7 @@ permutations = itertools.permutations([1, 2, 3])
 - Jump Game
 
 
-## Understanding Infinity Comparisons
+## Understanding Comparisons
 ### Distinct Value:
 
 float('inf') represents a special value that is distinct from all finite numbers. In Python, this value is conceptually treated as an unbounded positive value. So, comparisons with float('inf') are straightforward and don't require tolerances because infinity is inherently larger than any finite number.
@@ -556,6 +556,17 @@ Syntax: a[start:stop:step] with start, stop, and step all set to their default v
 
 **In summary, there's no functional difference between the two in the context of copying a list; it's mainly a matter of style and readability. If you want to be explicit about the step value, you can use a[::].**
 
+
+### equality
+```python
+original_list = [1, 2, 3, 4, 5]
+copied_list = original_list[:]
+print(copied_list)  # Output: [1, 2, 3, 4, 5]
+print(copied_list is original_list)  # Output: False
+```
+- == operator: Checks for value equality (whether the contents of the objects are the same).
+
+- is operator: Checks for identity equality (whether the variables point to the same object in memory).
 
 
 

@@ -71,6 +71,12 @@ def count_characters(s):
     
     return char_count
 
+# Once a key is accessed in the default dict, key-default value will be initialized to it.
+m = defaultdict(int)
+print('a' in m) # output False
+m['a']
+print('a' in m) # output True
+
 # Test the function
 input_string = "hello world"
 result = count_characters(input_string)
