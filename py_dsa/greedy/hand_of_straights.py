@@ -84,4 +84,37 @@ class Solution_map:
                         return False
                     heapq.heappop(min_heap)
         return True
+
+
+class Solution_sort:
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        '''
+            1. instead of hashmap for counting, we sort the array and group them one by one to check if s consecutive numbers exists for a group.
+            2. to keep track of pending/incomplete groups , we store (tail, count) in a min heap sorted by tail value
+                - then, we know which group the next number from the iteration should go for it
+                - if the top's tail + 1 != next number , then an incomplete group exists.
+                - if group's count reaches S , we pop and never push again , 
+                - otherwise, we update both tail and count of the group , push again
+        '''
+        if len(hand)%groupSize!=0:
+            return False
+        
+        sorted_hand = sorted(hand) #O(nlogn)
+        min_heap = []
+
+        for num in sorted_hand: #O(n)
+            newTail, newCount = num, 1
+            if min_heap:
+                tail, count = min_heap[0]
+                if tail + 1 == num:
+                    heapq.heappop(min_heap) #log(n)
+                    newTail, newCount = tail + 1, count + 1
+            
+            if newCount < groupSize:
+                heapq.heappush(min_heap, (newTail, newCount)) #log(n)
+        
+        return len(min_heap)==0 #O(2*nlogn)
+
                 
+
+
