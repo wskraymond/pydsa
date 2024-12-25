@@ -11,5 +11,26 @@ class Solution:
         Return true if it is possible to obtain the target triplet [x, y, z] as an element of triplets, or false otherwise.
     '''
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+        '''
+            template:
+                1. candidate set
+                2. selectin function
+                3. feasibility function
+                4. objective function
+                5. solution function
+            idea:
+                1. Triplets[i]
+                2. one iteration ( order doesn't matter for triplets[i][j] )
+                3. check if triplets[i] <= target
+                4. add the index of matched numbers to the set
+                    (i.e numbers in target can be duplicates)
+                5. return len(set) == 3
+        '''
 
-        pass
+        matches = set() # store unique index for target
+        for triplet in triplets:
+            if all( a <= b for a,b in zip(triplet, target)):
+                for i in range(0, len(target)):
+                    if triplet[i] == target[i]:
+                        matches.add(i)
+        return len(matches)==3
