@@ -34,3 +34,20 @@ class Solution:
                     if triplet[i] == target[i]:
                         matches.add(i)
         return len(matches)==3
+
+class Solution_arr:
+    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+        k = len(target)
+        res = 0
+        for triplet in triplets:
+            matches = 0
+            isValid = 0
+            for i in range(0,k):
+                if triplet[i] <= target[i]:
+                    isValid |= 1<<i
+                    if triplet[i] == target[i]:
+                        matches |= 1<<i
+            if isValid == 7:
+                res |= matches
+        return res==7
+        
