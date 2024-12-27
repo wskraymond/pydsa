@@ -35,7 +35,7 @@ class Solution:
                         matches.add(i)
         return len(matches)==3
 
-class Solution_arr:
+class Solution_bitset:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
         k = len(target)
         res = 0

@@ -24,7 +24,7 @@ class TestGreedy(unittest.TestCase):
         self.assertEqual(True, s.mergeTriplets([[2,5,3],[2,3,4],[1,2,5],[5,2,3]], [5,5,5]))
     
     def test_triplets_to_form_target_2(self):
-        s = merge_triplets_to_form_target_triplet.Solution_arr()
+        s = merge_triplets_to_form_target_triplet.Solution_bitset()
         self.assertEqual(True, s.mergeTriplets([[2,5,3],[1,8,4],[1,7,5]], [2,7,5]))
         self.assertEqual(False, s.mergeTriplets([[3,4,5],[4,5,6]], [3,2,5]))
         self.assertEqual(True, s.mergeTriplets([[2,5,3],[2,3,4],[1,2,5],[5,2,3]], [5,5,5]))
