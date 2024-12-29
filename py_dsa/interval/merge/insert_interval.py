@@ -23,6 +23,21 @@ class Solution_linear:
                 0 <= start <= end <= 105
         '''
 
+        '''
+            insertion scenario (one to one scenario): newInterval=[s,e] vs interval[i]
+                1. e <= intervals[i][0]
+                    append newInterval to res
+                    then return res + intervals[i:]
+                2. s >= intervals[i][1]
+                    append interval[i] to res
+                3. else then overlapped
+                    merge into 'newInterval' by 
+                        - newInterval[0] = min(s , interval[i][0]) 
+                        - newInterval[1] = max(e, interval[i][1])
+                4. after iteration (not return in first case), 
+                    append newInterval to res
+                    return res
+        '''
         pass
 
 class Solution_binary:
