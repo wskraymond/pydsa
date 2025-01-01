@@ -1,4 +1,4 @@
-from typing import List
+from typing import Callable, List
 
 from py_dsa import interval
 class Solution_one_on_one_forwarding:
@@ -68,46 +68,6 @@ class Solution_one_on_one_forwarding:
 
 class Solution_binary:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        #Intervals Array is sorted. Can you use Binary Search to find the correct position to insert the new Interval.?
-        n=len(intervals)
-        def binary_search(val:int, intervals:List[int]) -> int:
-            i,j = 0,n-1
-            while(i<=j):
-                mid = i + (j-i)//2
-                s1,e1 = intervals[mid]
-                if val < s1:
-                    if mid-1<0 or intervals[mid-1][1] < val:
-                        return mid
-                    else:
-                        j=mid-1
-                elif val > e1:
-                    if mid+1>=n or intervals[mid+1][0] > val:
-                        return mid
-                    else:
-                        i=mid+1
-                elif s1<=val<=e1:
-                    return mid
-            raise Exception() 
-
-        res=[]
-        merged_interval = []
-        s,e = newInterval
-        i = binary_search(s, intervals)
-        s1,e1 = intervals[i]
-        
-        if i>0:
-            res.append(intervals[:i])
-
-        if e < s1 :
-            return intervals[:i] + newInterval + intervals[i:]
-        else:
-            merged_interval.append(min(s1,s))
-
-        j = binary_search(e, intervals)
-        s2,e2 = intervals[j]
-        merged_interval.append(max(e2,e))
-        
-        res.append(merged_interval)
-        if j+1<n:
-            res.append(intervals[j+1:])
-        return res
+        # https://neetcode.io/solutions/insert-interval
+        # https://leetcode.ca/2016-01-26-57-Insert-Interval
+        pass
