@@ -67,7 +67,53 @@ class Solution_one_on_one_forwarding:
         return res
 
 class Solution_binary:
+    # https://neetcode.io/solutions/insert-interval
+    # https://leetcode.ca/2016-01-26-57-Insert-Interval
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        # https://neetcode.io/solutions/insert-interval
-        # https://leetcode.ca/2016-01-26-57-Insert-Interval
-        pass
+        n=len(intervals)
+        s,e = newInterval
+
+        #non-overlapped left part : O(logn)
+        i,j=0,n-1
+        left = -1
+        while i<=j:
+            mid=i+(j-i)//2
+            e1 = intervals[mid][1]
+            e2 = intervals[mid+1][1] if mid+1<n else float('inf')
+            if e1 < s <= e2:
+                left = mid
+                break
+            elif e1 < s:
+                i = mid+1
+            else:
+                j = mid-1
+
+        #non-overlapped right part : O(logn)      
+        i,j=0,n-1
+        right = n
+        while i<=j:
+            mid=i+(j-i)//2
+            s1 = intervals[mid][0]
+            s2 = intervals[mid-1][0] if mid-1>=0 else -1
+            if s1 > e >= s2:
+                right = mid
+                break
+            elif s1 > e:
+                j = mid-1
+            else:
+                i = mid+1
+        
+        if left+1!=right:
+            s = min(s, intervals[left+1][0])
+            e = max(e, intervals[right-1][1])
+        
+        ''' alternative: (in-place) delete & insert
+            del intervals[left+1:right-1]
+            intervals.insert(left+1, [s,e])
+            return intervals
+        '''
+    
+        #copying: O(n)
+        #totaL = 2*logn + n = O(n)
+        return intervals[:left+1] + [[s,e]] + intervals[right:]
+        
