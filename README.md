@@ -608,6 +608,12 @@ public class BinarySearchExample {
 
 **Python**
 
+```python
+bisect.bisect_left(a, x, lo=0, hi=len(a), *, key=None)
+```
+
+The returned insertion point ip partitions the array a into two slices such that all(elem < x for elem in a[lo : ip]) is true for the left slice and all(elem >= x for elem in a[ip : hi]) is true for the right slice.
+
 Here's a quick summary:
 - Use bisect_left to find the insertion point before existing identical entries.
 - Use bisect_right to find the insertion point after existing identical entries.

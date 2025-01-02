@@ -116,4 +116,34 @@ class Solution_binary:
         #copying: O(n)
         #totaL = 2*logn + n = O(n)
         return intervals[:left+1] + [[s,e]] + intervals[right:]
+
+import bisect
+
+class Solution_binary:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        '''
+            idea: 
+                0. bisect
+                    - return -1 if insertion before 0
+                    - return n if insertion after n-1
+                    - else return insertion position within array
+                1. find the left and right index of non-overlapping intervals
+                    - left part: e1 < s <= e2
+                        - use bisect_left, return index of e2
+                        - left = reterned index - 1
+                    - right part: s1 <= e < s2 
+                        - use bisect_right, return index of s2
+                        - right = returned index 
+                2. merge the overlapping intervals
+        '''
+        s,e = newInterval
+        s_key_func = lambda x: x[0]
+        e_key_func = lambda x: x[1]
+        left = bisect.bisect_left(intervals, s, key=e_key_func) - 1
+        right = bisect.bisect_right(intervals, e, key=s_key_func)
         
+        if left+1!=right: #overlapping with intervals
+            s = min(s, intervals[left+1][0])
+            e = max(e, intervals[right-1][1])
+        
+        return intervals[:left+1] + [[s,e]] + intervals[right:]
