@@ -1,6 +1,6 @@
+import bisect
 from typing import Callable, List
 
-from py_dsa import interval
 class Solution_one_on_one_forwarding:
     '''
         You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] 
@@ -117,9 +117,7 @@ class Solution_binary:
         #totaL = 2*logn + n = O(n)
         return intervals[:left+1] + [[s,e]] + intervals[right:]
 
-import bisect
-
-class Solution_binary:
+class Solution_binary_bisect:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         '''
             idea: 
@@ -137,10 +135,8 @@ class Solution_binary:
                 2. merge the overlapping intervals
         '''
         s,e = newInterval
-        s_key_func = lambda x: x[0]
-        e_key_func = lambda x: x[1]
-        left = bisect.bisect_left(intervals, s, key=e_key_func) - 1
-        right = bisect.bisect_right(intervals, e, key=s_key_func)
+        left = bisect.bisect_left(intervals, s, key=lambda x: x[0]) - 1
+        right = bisect.bisect_right(intervals, e, key=lambda x: x[1])
         
         if left+1!=right: #overlapping with intervals
             s = min(s, intervals[left+1][0])
