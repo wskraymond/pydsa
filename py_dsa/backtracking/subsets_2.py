@@ -99,7 +99,6 @@ class Solution_iterative_sort:
                 while j+1<n and nums[j]==nums[j+1]:
                     j+=1
                 j+=1
-            
-            return res
+
         backtrack(0, [])
         return res
