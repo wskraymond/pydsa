@@ -363,7 +363,10 @@ permutations = itertools.permutations([1, 2, 3])
 
 >***Binary***
 #### Binary Search
-- 69\. Sqrt(x)
+1) Customized Search
+   - 69\. Sqrt(x)
+2) Non-Exact Match
+   - 2602\. Minimum Operations to Make All Array Elements Equal
 
 #### Heaps
 1) Min&Max Heaps
