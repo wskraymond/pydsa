@@ -649,6 +649,78 @@ index = bisect.bisect_left(arr, target)
 print(f"Index where arr[i] < {target} < arr[i+1]: {index}")  # Output: Index where arr[i] < 5 < arr[i+1]: 3
 ```
 
+# Java vs Python: Removing Elements from Collections
+
+## Comparison Table
+
+| Aspect | Java | Python |
+|--------|------|--------|
+| **List removal while iterating** | Must use `Iterator.remove()` to avoid `ConcurrentModificationException`. | Direct removal inside a loop can cause skipped elements. Idiomatic approach: list comprehension or iterate over a copy. |
+| **Map/Dict removal while iterating** | Must use `Iterator` over `entrySet()` and call `iterator.remove()`. | Cannot change dict size during iteration. Idiomatic approach: iterate over a copy of keys or rebuild with a dict comprehension. |
+| **Style** | Explicit iterator control. | More declarative: comprehensions or safe iteration over copies. |
+
+---
+
+## Examples
+
+### Removing Even Numbers from a List
+
+**Java**
+```java
+import java.util.*;
+
+public class Example {
+    public static void main(String[] args) {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1,2,3,4,5));
+        Iterator<Integer> it = numbers.iterator();
+        while (it.hasNext()) {
+            if (it.next() % 2 == 0) {
+                it.remove();
+            }
+        }
+        System.out.println(numbers); // [1, 3, 5]
+    }
+}
+```
+
+```java
+import java.util.*;
+
+public class Example {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
+
+        Iterator<Map.Entry<String, Integer>> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            if (it.next().getValue() % 2 == 0) {
+                it.remove();
+            }
+        }
+        System.out.println(map); // {a=1, c=3}
+    }
+}
+```
+
+**python**
+
+```python
+for n in numbers[:]:  # iterate over a shallow copy
+    if n % 2 == 0:
+        numbers.remove(n)
+```
+
+```python
+my_dict = {"a": 1, "b": 2, "c": 3}
+for key in list(my_dict.keys()):
+    if my_dict[key] % 2 == 0:
+        del my_dict[key]
+```
+
+
+
 
 
 
